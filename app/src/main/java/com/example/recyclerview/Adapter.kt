@@ -5,12 +5,23 @@ import android.view.View;
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
     var list = listOf<Music>()
 
+    var onClickListener: ((String) -> (Unit))? = null
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        init {
+            itemView.setOnClickListener {
+                onClickListener?.invoke(list[adapterPosition].image)
+            }
+        }
+
         private val textView: TextView
         private val textView2: TextView
         private val image: ImageView
@@ -24,7 +35,10 @@ class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
         fun bind(music: Music) {
             textView.text = music.name
             textView2.text = music.author
-            image.setImageResource(music.image)
+            Glide
+                .with(itemView.context)
+                .load(music.image)
+                .into(image)
         }
     }
 
