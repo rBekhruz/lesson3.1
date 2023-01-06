@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("image_url", it)
             startActivity(intent)
         }
+
 
     }
 }
